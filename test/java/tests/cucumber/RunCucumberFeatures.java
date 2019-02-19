@@ -3,8 +3,10 @@ package tests.cucumber;
 import cucumber.api.CucumberOptions;
 import cucumber.api.testng.CucumberFeatureWrapper;
 import cucumber.api.testng.TestNGCucumberRunner;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.annotations.*;
-import tests.BaseTest;
+import tests.cucumber.steps.BaseSteps;
 
 @CucumberOptions(
         monochrome = true,
@@ -18,31 +20,33 @@ import tests.BaseTest;
                 "rerun:target/cucumber-reports/rerun.txt"
         }
 )
-public class RunCucumberFeatures extends  BaseTest {
+public class RunCucumberFeatures extends  BaseSteps {
 
+    private Logger logger = LogManager.getRootLogger();
     private TestNGCucumberRunner testNGCucumberRunner;
 
     @BeforeClass(alwaysRun = true)
     public void setUpClass() {
-        System.out.println("Cucumber Test Class Before");
+        logger.info("Cucumber @BeforeClass: Setting up TestNGCucumberRunner");
         testNGCucumberRunner = new TestNGCucumberRunner(this.getClass());
     }
 
     @Test(dataProvider = "features")
     public void feature(CucumberFeatureWrapper cucumberFeature) {
-        System.out.println("Cucumber Test Class Inside Test");
+        logger.info("Cucumber @Test: Getting feature");
         System.out.println(cucumberFeature.getCucumberFeature());
         testNGCucumberRunner.runCucumber(cucumberFeature.getCucumberFeature());
     }
 
     @DataProvider
     public Object[][] features() {
-        System.out.println("Data Provider test Class");
+        logger.info("Cucumber @DataProvider: Providing features");
         return testNGCucumberRunner.provideFeatures();
     }
 
     @AfterClass(alwaysRun = true)
-    public void tearDownClass() throws Exception {
+    public void tearDownClass() {
+        logger.info("Cucumber @AfterClass: Tearing down TestNGCucumberRunner");
         testNGCucumberRunner.finish();
     }
 

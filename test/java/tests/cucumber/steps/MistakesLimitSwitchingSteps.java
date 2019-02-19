@@ -1,33 +1,29 @@
 package tests.cucumber.steps;
 
 import cucumber.api.java.Before;
+import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import pages.*;
 import tests.ThreadLocalDriver;
 
 public class MistakesLimitSwitchingSteps extends BaseSteps{
+    private Logger logger = LogManager.getRootLogger();
     private WelcomePage welcomePage;
-    private InstructionsPage instructionsPage;
-    private PlayPage playPage;
-    private PopUpMenu popUpMenu;
     private SettingsPage settingsPage;
 
     @Before
     public void setupMistakesLimitSwitchingSteps () {
-        System.out.println("Cucumber Before-MistakesLimitSwitching-test-cucumber");
-        setupCucumber();
         welcomePage = new WelcomePage(ThreadLocalDriver.getTLDriver());
-        instructionsPage = new InstructionsPage(ThreadLocalDriver.getTLDriver());
-        playPage = new PlayPage(ThreadLocalDriver.getTLDriver());
-        popUpMenu = new PopUpMenu(ThreadLocalDriver.getTLDriver());
         settingsPage = new SettingsPage(ThreadLocalDriver.getTLDriver());
 
     }
     @Given("^User navigates to Settings$")
-    public void user_navigates_to_Settings() throws Throwable {
+    public void user_navigates_to_Settings() {
         welcomePage
                 .clickFirstAcceptButton()
                 .clickSecondAcceptButton()
@@ -37,29 +33,40 @@ public class MistakesLimitSwitchingSteps extends BaseSteps{
     }
 
     @Given("^Mistakes Limit is ON$")
-    public void mistakes_Limit_is_ON() throws Throwable {
+    public void mistakes_Limit_is_ON() {
+        logger.info("Checking if Mistakes Limit switcher is ON:");
         boolean isOn = settingsPage.isMistakesLimitTurnOn();
-        if (isOn == false) {
+        if (!isOn) {
             settingsPage.clickMistakesLimitSwitcher();
         }
     }
 
     @When("^He clicks on Limit switcher$")
-    public void he_clicks_on_Limit_switcher() throws Throwable {
+    public void he_clicks_on_Limit_switcher() {
         settingsPage.clickMistakesLimitSwitcher();
     }
 
     @Then("^Mistakes Limit changes to OFF$")
-    public void assert_that_mistakes_Limit_changes_to_OFF() throws Throwable {
+    public void assert_that_mistakes_Limit_changes_to_OFF() {
         boolean isOn = settingsPage.isMistakesLimitTurnOn();
 
-        Assert.assertEquals(isOn, false);
+        logger.info("Asserting if Mistakes Limit switcher changes to OFF");
+        Assert.assertTrue(!isOn);
     }
 
-    @Then("^Information message (.*) is displayed$")
-    public void information_message_Changes_will_be_applied_in_the_next_game_is_displayed(String message) throws Throwable {
+    @Then("^Auto-Check For Mistakes changes to OFF$")
+    public void assert_that_auto_check_for_mistakes_changes_to_OFF() {
+        boolean isOn = settingsPage.isAutoCheckForMistakesTurnOn();
+
+        logger.info("Asserting if Auto-Check For Mistakes switcher changes to OFF");
+        Assert.assertTrue(!isOn);
+    }
+
+    @Then("^Notification message (.*) is displayed$")
+    public void notification_message_is_displayed(String message) {
         String actualMessage = settingsPage.getNotificationMessage();
 
+        logger.info("Asserting if notification message is displayed correctly");
         Assert.assertEquals(actualMessage, message);
     }
 

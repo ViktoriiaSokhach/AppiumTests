@@ -4,14 +4,15 @@ Feature: Change Settings
 
   Background: User is on Play Page
 
-  @ChangeSettings
+  @ChangeMistakesLimit
   Scenario Outline: Set Mistakes limit OFF
     Given User navigates to Settings
     And Mistakes Limit is ON
     When He clicks on Limit switcher
     Then Mistakes Limit changes to OFF
-    And He clicks on Limit switcher
-    And Information message <message> is displayed
+    And Auto-Check For Mistakes changes to OFF
+    Then He clicks on Limit switcher
+    And Notification message <message> is displayed
 
     Examples:
       | message                                  |
