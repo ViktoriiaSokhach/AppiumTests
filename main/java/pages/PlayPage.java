@@ -10,12 +10,12 @@ public class PlayPage extends BasePage {
     private Logger logger = LogManager.getRootLogger();
     private PopUpMenu popUpMenu;
 
+    private String menuBar = "com.easybrain.sudoku.android:id/more_custom_image_view";
+
     public PlayPage(AndroidDriver driver) {
         super(driver);
         popUpMenu = new PopUpMenu(driver);
     }
-
-    private String menuBar = "com.easybrain.sudoku.android:id/more_custom_image_view";
 
     public PopUpMenu clickMenuBar () {
         logger.info("Waiting for visibility of PopUpMenu");

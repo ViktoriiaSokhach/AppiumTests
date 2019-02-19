@@ -4,7 +4,6 @@ Feature: Change Settings
 
   Background: User is on Play Page
 
-  @ChangeMistakesLimit
   Scenario Outline: Set Mistakes limit OFF
     Given User navigates to Settings
     And Mistakes Limit is ON
