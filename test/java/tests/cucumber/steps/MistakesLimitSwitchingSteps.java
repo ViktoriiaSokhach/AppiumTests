@@ -1,7 +1,6 @@
 package tests.cucumber.steps;
 
 import cucumber.api.java.Before;
-import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -12,6 +11,7 @@ import pages.*;
 import tests.ThreadLocalDriver;
 
 public class MistakesLimitSwitchingSteps extends BaseSteps{
+
     private Logger logger = LogManager.getRootLogger();
     private WelcomePage welcomePage;
     private SettingsPage settingsPage;
@@ -23,7 +23,7 @@ public class MistakesLimitSwitchingSteps extends BaseSteps{
 
     }
     @Given("^User navigates to Settings$")
-    public void user_navigates_to_Settings() {
+    public void navigateToSettings() {
         welcomePage
                 .clickFirstAcceptButton()
                 .clickSecondAcceptButton()
@@ -33,7 +33,7 @@ public class MistakesLimitSwitchingSteps extends BaseSteps{
     }
 
     @Given("^Mistakes Limit is ON$")
-    public void mistakes_Limit_is_ON() {
+    public void checkIfMistakesLimitIsOn() {
         logger.info("Checking if Mistakes Limit switcher is ON:");
         boolean isOn = settingsPage.isMistakesLimitTurnOn();
         if (!isOn) {
@@ -42,12 +42,12 @@ public class MistakesLimitSwitchingSteps extends BaseSteps{
     }
 
     @When("^He clicks on Limit switcher$")
-    public void he_clicks_on_Limit_switcher() {
+    public void clickOnLimitSwitcher() {
         settingsPage.clickMistakesLimitSwitcher();
     }
 
     @Then("^Mistakes Limit changes to OFF$")
-    public void assert_that_mistakes_Limit_changes_to_OFF() {
+    public void assertThatMistakesLimitChangesToOff() {
         boolean isOn = settingsPage.isMistakesLimitTurnOn();
 
         logger.info("Asserting if Mistakes Limit switcher changes to OFF");
@@ -55,7 +55,7 @@ public class MistakesLimitSwitchingSteps extends BaseSteps{
     }
 
     @Then("^Auto-Check For Mistakes changes to OFF$")
-    public void assert_that_auto_check_for_mistakes_changes_to_OFF() {
+    public void assertThatAutoCheckForMistakesChangesToOff() {
         boolean isOn = settingsPage.isAutoCheckForMistakesTurnOn();
 
         logger.info("Asserting if Auto-Check For Mistakes switcher changes to OFF");
@@ -63,7 +63,7 @@ public class MistakesLimitSwitchingSteps extends BaseSteps{
     }
 
     @Then("^Notification message (.*) is displayed$")
-    public void notification_message_is_displayed(String message) {
+    public void assertThatNotificationMessageIsDisplayed(String message) {
         String actualMessage = settingsPage.getNotificationMessage();
 
         logger.info("Asserting if notification message is displayed correctly");
