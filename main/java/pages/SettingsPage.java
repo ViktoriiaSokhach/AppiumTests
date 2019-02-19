@@ -39,11 +39,10 @@ public class SettingsPage extends BasePage{
         return isOn;
     }
 
-    public void clickMistakesLimitSwitcher () {
-        logger.info("Waiting for visibility of Mistakes Limit switcher");
-        waitVisibility(By.xpath(mistakesLimitSwitcher));
-        logger.info("Clicking on Mistakes Limit switcher");
-        click(By.xpath(mistakesLimitSwitcher));
+    public SettingsPage clickMistakesLimitSwitcher () {
+        logger.info("Waiting for visibility and clicking on Mistakes Limit switcher");
+        waitAndClick(By.xpath(mistakesLimitSwitcher));
+        return this;
     }
 
     public String getNotificationMessage() {

@@ -20,20 +20,14 @@ public class Instructions extends BasePage{
     }
 
     public Instructions clickNextPageArrow () {
-        logger.info("Waiting for visibility of Next Page Arrow");
-        waitVisibility(By.id(nextPageArrow));
-        logger.info("Clicking on Next Page Arrow");
-        click(By.id(nextPageArrow));
-
+        logger.info("Waiting for visibility and clicking on Next Page Arrow");
+        waitAndClick(By.id(nextPageArrow));
         return new Instructions(driver);
     }
 
     public PlayPage clickSkipButton () {
-        logger.info("Waiting for visibility of Skip button");
-        waitVisibility(By.id(skipButton));
-        logger.info("Clicking on Skip button");
-        click(By.id(skipButton));
-
+        logger.info("Waiting for visibility and clicking on Skip button");
+        waitAndClick(By.id(skipButton));
         return new PlayPage(driver);
     }
 

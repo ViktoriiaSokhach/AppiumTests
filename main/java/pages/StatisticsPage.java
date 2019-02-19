@@ -17,8 +17,7 @@ public class StatisticsPage extends BasePage {
     public boolean isResetButtonDisplayed() {
         logger.info("Waiting for visibility of Reset Statistics button");
         waitVisibility(By.id(resetStatistics));
-        logger.info("Checking if Reset statistics button is displayed");
-
+        logger.info("Checking if Reset Statistics button is displayed");
         return isElementPresent(By.id(resetStatistics));
     }
 

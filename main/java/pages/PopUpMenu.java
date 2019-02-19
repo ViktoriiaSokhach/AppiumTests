@@ -19,20 +19,14 @@ public class PopUpMenu extends BasePage{
     }
 
     public SettingsPage navigateSettings () {
-        logger.info("Waiting for visibility of Settings Page link");
-        waitVisibility(By.id(settings));
-        logger.info("Clicking on Settings Page link");
-        click(By.id(settings));
-
+        logger.info("Waiting for visibility and clicking on Settings Page link");
+        waitAndClick(By.id(settings));
         return new SettingsPage(driver);
     }
 
     public StatisticsPage navigateStatistics () {
-        logger.info("Waiting for visibility of Statistics Page link");
-        waitVisibility(By.id(statistics));
-        logger.info("Clicking on Statistics Page link");
-        click(By.id(statistics));
-
+        logger.info("Waiting for visibility and clicking on Statistics Page link");
+        waitAndClick(By.id(statistics));
         return new StatisticsPage(driver);
     }
 }

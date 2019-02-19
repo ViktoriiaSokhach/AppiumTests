@@ -18,20 +18,14 @@ public class  WelcomePage extends BasePage {
     private String acceptButton = "com.easybrain.sudoku.android:id/btnAccept";
 
     public WelcomePage clickFirstAcceptButton () {
-        logger.info("Waiting for visibility of first Accept button");
-        waitVisibility(By.id(acceptButton));
-        logger.info("Clicking on first Accept button");
-        click(By.id(acceptButton));
-
+        logger.info("Waiting for visibility and clicking on first Accept button");
+        waitAndClick(By.id(acceptButton));
         return this;
     }
 
     public Instructions clickSecondAcceptButton () {
-        logger.info("Waiting for visibility of second Accept button");
-        waitVisibility(By.id(acceptButton));
-        logger.info("Clicking on second Accept button");
-        click(By.id(acceptButton));
-
+        logger.info("Waiting for visibility and clicking on second Accept button");
+        waitAndClick(By.id(acceptButton));
         return new Instructions(driver);
     }
 

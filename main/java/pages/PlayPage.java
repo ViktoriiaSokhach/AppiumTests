@@ -18,11 +18,8 @@ public class PlayPage extends BasePage {
     }
 
     public PopUpMenu clickMenuBar () {
-        logger.info("Waiting for visibility of PopUpMenu");
-        waitVisibility(By.id(menuBar));
-        logger.info("Clicking on PopUpMenu");
-        click(By.id(menuBar));
-
+        logger.info("Waiting for visibility and clicking on PopUpMenu");
+        waitAndClick(By.id(menuBar));
         return new PopUpMenu(driver);
     }
 
