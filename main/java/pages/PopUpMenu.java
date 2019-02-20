@@ -8,14 +8,12 @@ import org.openqa.selenium.By;
 public class PopUpMenu extends BasePage{
 
     private Logger logger = LogManager.getRootLogger();
-    private SettingsPage settingsPage;
 
     private String settings = "com.easybrain.sudoku.android:id/item_popup_menu_settings";
     private String statistics = "com.easybrain.sudoku.android:id/item_popup_menu_statistics";
 
     public PopUpMenu(AndroidDriver driver) {
         super(driver);
-        settingsPage = new SettingsPage(driver);
     }
 
     public SettingsPage navigateSettings () {

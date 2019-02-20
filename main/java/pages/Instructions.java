@@ -8,7 +8,6 @@ import org.openqa.selenium.By;
 public class Instructions extends BasePage{
 
     private Logger logger = LogManager.getRootLogger();
-    private PlayPage playPage;
 
     private String skipButton = "com.easybrain.sudoku.android:id/skip";
     private String nextPageArrow = "com.easybrain.sudoku.android:id/next";
@@ -16,7 +15,6 @@ public class Instructions extends BasePage{
 
     public Instructions(AndroidDriver driver) {
         super(driver);
-        playPage = new PlayPage(driver);
     }
 
     public Instructions clickNextPageArrow () {
